@@ -1,0 +1,33 @@
+#include <iostream>
+#include <map>
+#include <vector>
+using namespace std;
+
+
+
+int main(){
+    string arr[]={"abc","pqr","pqr","abc"};
+    map<string,int>m;
+    int size=sizeof(arr)/sizeof(arr[0]);
+    for(int i=0;i<size;i++){
+        m[arr[i]]++;
+    }
+    vector<string>fin;
+    while(!m.empty()){
+        auto it=m.begin();
+        string st=it->first;
+        int val=it->second;
+        for(auto pr:m){
+            if(pr.second<val){
+            st=pr.first;
+            val=pr.second;
+           }
+        }
+        fin.push_back(st);
+        m.erase(st);
+    }
+    for(int i=0;i<fin.size();i++){
+        cout<<fin[i]<<endl;
+    }
+    return 0;
+}
